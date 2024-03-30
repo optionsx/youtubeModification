@@ -15,9 +15,9 @@ window.addEventListener("yt-navigate-finish", (_e) => {
     const html5 = document.querySelector("video");
     const player = document.querySelector("#movie_player, .html5-video-player");
     const quality = player.getAvailableQualityLevels();
-    let killSwitch = false;
-    window.onkeydown = e => {
-        if (e.key === "S") killSwitch = true;
+    let killSwitch = true;
+    window.onkeyup = e => {
+        if (e.key === "S") killSwitch = false;
     };
     html5.ondurationchange = (_e) => {
         setTimeout((_) => killSwitch && setQuality(), 1000);
