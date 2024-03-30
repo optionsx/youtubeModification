@@ -1,20 +1,20 @@
-#### basic Youtube userscript (originally written in 2021~2)
+# basic Youtube userscript
 
-##### was created to know exactly how many minutes are spent/wasted, real duration
+#### (originally written in 2021~2)
 
-##### also to set quality to highest available automatically
+- was created to know exactly how many minutes are spent/wasted, real duration
+
+- also to set quality to highest available automatically
 
 ## Installation
 
-#### 1. Install a userscript manager like [Violentmonkey](https://violentmonkey.github.io/get-it/) or [Tampermonkey](https://www.tampermonkey.net/)
+- Install a userscript manager like [Violentmonkey](https://violentmonkey.github.io/get-it/) or [Tampermonkey](https://www.tampermonkey.net/)
 
-#### 2. Install the script by clicking [here](https://github.com/optionsx/youtubeModification/raw/main/relativeToSpeed.user.js)
+- Install the script by clicking [here](https://github.com/optionsx/youtubeModification/raw/main/relativeToSpeed.user.js)
 
 ##### Press `SHIFT + S` to temporarily stop "auto highest quality selector" on current active tab
 
 # ![gif](https://files.catbox.moe/z75nfq.gif)
-
-#### Enjoy
 
 ### aknowledgements
 
