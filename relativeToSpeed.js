@@ -6,8 +6,8 @@
 // @run-at       document-start
 // @match        https://www.youtube.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=youtube.com
-// @grant        GM_setValue
-// @grant        GM_getValue
+// @updateURL    https://www.google.com/s2/favicons?sz=64&domain=youtube.com
+// @grant        none
 // ==/UserScript==
 
 window.addEventListener("yt-navigate-finish", (_e) => {
@@ -15,7 +15,6 @@ window.addEventListener("yt-navigate-finish", (_e) => {
     const html5 = document.querySelector("video");
     const player = document.querySelector("#movie_player, .html5-video-player");
     const quality = player.getAvailableQualityLevels();
-    console.log(quality)
     let killSwitch = false;
     window.onkeydown = e => {
         if (e.key === "S") killSwitch = true;
