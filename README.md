@@ -1,8 +1,10 @@
-#### basic Youtube userscript (originally written in 2021) that i'd like to share now
+#### basic Youtube userscript (originally written in 2021~2) that i'd like to share now
+
+##### was created to know exactly how many minutes are spent/wasted, real duration
 
 #### Features
 
-##### * get the relative duration of a YouTube video based on its playback speed
+##### * get real duration of a video (relative to speed) minus sponsors/ads if there is any
 
 ##### * selecting highest quality automatically
 
@@ -14,4 +16,10 @@
 
 ##### Press `SHIFT + S` to temporarily stop "auto highest quality selector" on current active tab
 
+# ![gif](https://files.catbox.moe/yeio0e.gif)
+
 #### Enjoy
+
+### aknowledgements
+
+##### [SponsorBlock](https://sponsor.ajay.app/)
