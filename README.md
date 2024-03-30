@@ -16,7 +16,7 @@
 
 ##### Press `SHIFT + S` to temporarily stop "auto highest quality selector" on current active tab
 
-# ![gif](https://files.catbox.moe/yeio0e.gif)
+# ![gif](https://files.catbox.moe/z75nfq.gif)
 
 #### Enjoy
 
