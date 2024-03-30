@@ -1,4 +1,4 @@
-#### basic Youtube userscript (written in 2021) that i'd like to share now
+#### basic Youtube userscript (originally written in 2021) that i'd like to share now
 
 #### Features
 
