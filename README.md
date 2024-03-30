@@ -1,8 +1,8 @@
 # basic Youtube userscript
 
-- was created to know exactly how many minutes are spent/wasted, real duration
+- know exactly how many minutes minus sponsors/ads are spent/wasted, get real duration
 
-- also to set quality to highest available automatically
+- set quality to highest available automatically
 
 ## Installation
 
