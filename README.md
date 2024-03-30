@@ -1,4 +1,4 @@
-#### basic Youtube userscript (originally written in 2021~2) that i'd like to share now
+#### basic Youtube userscript (originally written in 2021~2)
 
 ##### was created to know exactly how many minutes are spent/wasted, real duration
 
