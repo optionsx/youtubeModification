@@ -2,11 +2,7 @@
 
 ##### was created to know exactly how many minutes are spent/wasted, real duration
 
-#### Features
-
-##### * get real duration(relative to speed) minus sponsors/ads if there is any
-
-##### * set quality to highest available automatically
+##### also to set quality to highest available automatically
 
 ## Installation
 
