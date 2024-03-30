@@ -4,9 +4,9 @@
 
 #### Features
 
-##### * get real duration of a video (relative to speed) minus sponsors/ads if there is any
+##### * get real duration(relative to speed) minus sponsors/ads if there is any
 
-##### * selecting highest quality automatically
+##### * set quality to highest available automatically
 
 ## Installation
 

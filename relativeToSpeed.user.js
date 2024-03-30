@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         playbackSpeed_relativeDuration
+// @name         youtubeModification
 // @version      0.1
-// @description  HighestOnly
+// @description  get real duration and set quality to best
 // @author       Zuka(Chzu)
 // @run-at       document-start
 // @match        https://www.youtube.com/*
@@ -46,6 +46,7 @@ window.addEventListener("yt-navigate-finish", (_e) => {
     setTimeout((_) => relative_duration_ToSpeed(ytDuration), setQuality(), 1000);
 });
 
+// utils.js
 function getFormattedTime(seconds, precise) {
     seconds = Math.max(seconds, 0);
     const hours = Math.floor(seconds / 60 / 60);
