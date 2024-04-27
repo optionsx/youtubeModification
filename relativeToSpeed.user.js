@@ -1,49 +1,88 @@
 // ==UserScript==
-// @name         youtubeModification
+// @name         youtubeModification2
 // @version      0.1
 // @description  get real duration and set quality to best
 // @author       Zuka(Chzu)
-// @run-at       document-start
 // @match        https://www.youtube.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=youtube.com
 // @updateURL    https://github.com/optionsx/youtubeModification/raw/main/relativeToSpeed.user.js
+// @downloadURL  https://github.com/optionsx/youtubeModification/raw/main/relativeToSpeed.user.js
 // @grant        none
 // ==/UserScript==
 
-window.addEventListener("yt-navigate-finish", (_e) => {
+document.addEventListener("yt-navigate-finish", (_e) => {
     if ((new URL(location.href).pathname) !== "/watch") return;
     const html5 = document.querySelector("video");
     const player = document.querySelector("#movie_player, .html5-video-player");
     const quality = player.getAvailableQualityLevels();
-    let killSwitch = true;
-    window.onkeyup = e => {
-        if (e.key === "S") killSwitch = false;
-    };
-    html5.ondurationchange = (_e) => {
-        setTimeout((_) => killSwitch && setQuality(), 1000);
-    };
-    function setQuality() {
-        player.getPlaybackQuality() !== quality[0] && // quality != best?
-            player.setPlaybackQuality(quality[0],
-                player.setPlaybackQualityRange(quality[0]));
+
+    // html5.onplay = () => {
+    //     setQuality()
+    // };
+
+    !function setQuality() {
+        player.getPlaybackQuality() !== quality[2] && // quality != best?
+            player.setPlaybackQuality(
+                quality[2],
+                player.setPlaybackQualityRange(quality[2]),
+            );
+    }()
+    /* relative_duration_speed.js*/
+    // let ytDuration = document.getElementsByClassName("ytp-time-duration")[0];
+    // function relative_duration_ToSpeed(duration) {
+    //     const sponsorBlock = document.getElementById("sponsorBlockDurationAfterSkips")
+    //     if (sponsorBlock?.textContent) sponsorBlock.style.display = "none"; // hidden
+    //     const playSpeed = html5.playbackRate;
+    //     const hasSponsor = sponsorBlock?.textContent ? getFormattedTimeToSeconds(parseSplit(sponsorBlock.textContent))
+    //         : player.getDuration();
+    //     const realDuration = getFormattedTime(hasSponsor / playSpeed);
+    //     duration.textContent = realDuration;
+    // }
+    const isOnMobile = location.host === "m.youtube.com" ? ".ytm" : ".ytp";
+    function extractNremoveSB() {
+        const SB = document.getElementById("sponsorBlockDurationAfterSkips");
+        if (SB?.textContent) {
+            SB.style.display = "none";
+            return getFormattedTimeToSeconds(parseSplit(SB.textContent));
+        } else {
+            return player.getDuration();
+        }
     }
 
-    /* relative_duration_speed.js*/
-    let ytDuration = document.getElementsByClassName("ytp-time-duration")[0];
-    function relative_duration_ToSpeed(duration) {
-        const sponsorBlock = document.getElementById("sponsorBlockDurationAfterSkips")
-        if (sponsorBlock.textContent) sponsorBlock.style.display = "none"; // hidden
-        const playSpeed = html5.playbackRate;
-        const hasSponsor = sponsorBlock.textContent ? getFormattedTimeToSeconds(parseSplit(sponsorBlock.textContent))
-            : player.getDuration();
-        const realDuration = getFormattedTime(hasSponsor / playSpeed);
-        duration.textContent = realDuration;
+    const extractedSB = extractNremoveSB();
+    !function hideOriginalTime() {
+        const origin = document.querySelector(
+            `${isOnMobile}-time-display.notranslate > span:nth-child(2)`,
+        );
+        origin.style.display = "none";
+    }();
+
+    const currentTime = document.querySelector(`span${isOnMobile}-time-current`);
+    const displayTime = document.querySelector(
+        `${isOnMobile}-time-display.notranslate`,
+    );
+
+    ~function spawnElement() {
+        const newTimeSpan = document.createElement("span");
+        newTimeSpan.classList.add("superSecretID");
+        displayTime.append(newTimeSpan);
+    }();
+
+    const superSecretElement = document.getElementsByClassName("superSecretID")[0];
+
+    function handleTimeChange(mutationsList, _observer) {
+        for (const mutation of mutationsList) {
+            if (mutation.type === "childList") {
+                const changedCurrent = getFormattedTime(html5.currentTime / html5.playbackRate)
+                const adjustedTotalDuration = ` / ${getFormattedTime(extractedSB / html5.playbackRate)} - (${html5.playbackRate}x)`;
+                superSecretElement.textContent = changedCurrent + adjustedTotalDuration;
+            }
+        }
     }
-    html5.onratechange = (_) => {
-        relative_duration_ToSpeed(ytDuration);
-    };
-    // autostart
-    setTimeout((_) => relative_duration_ToSpeed(ytDuration), setQuality(), 1000);
+
+    const observer = new MutationObserver(handleTimeChange);
+    const observerConfig = { childList: true };
+    observer.observe(currentTime, observerConfig);
 });
 
 // utils.js
@@ -69,6 +108,14 @@ function getFormattedTimeToSeconds(formatted) {
     const seconds = fragments[3] ? parseFloat(fragments[3].replace(",", ".")) : 0;
     return hours * 3600 + minutes * 60 + seconds;
 }
+
 function parseSplit(s) {
     return s.split("(")[1]?.split(")")[0];
 }
+/* 
+function wfke(selector, callback) {
+    var el = document.querySelector(selector);
+    if (el) return callback();
+    setTimeout(wfke, 100, selector, callback);
+}
+ */
