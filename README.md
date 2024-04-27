@@ -1,6 +1,6 @@
 # basic Youtube userscript
 
-- know exactly how many minutes minus sponsors/ads are spent/wasted, get real duration
+- know exactly how many minutes(+sponsors/ads) are spent/wasted, get real duration
 
 - set quality to highest available automatically
 
